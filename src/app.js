@@ -5,6 +5,7 @@ const app = express();
 // default port set to localhost 3000 if not in production
 const port = process.argv.PORT || 3000;
 
+// setting up handle bars to use dynamic html
 app.set('view engine', 'hbs');
 
 const items = [
