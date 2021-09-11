@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+</head>
+
+<body>
+    <h1>Shopping cart</h1>
+    <p id="total"></p>
+    <input placeholder="0" id="totalItem" type="number" min="0" onChange="updateTotal({{price}})">
+
+    <script>
+        document.getElementById("total").innerHTML = "{{name}}, price: ${{price}}, total price: $0"
+
+        function updateTotal(price) {
+            const discount = {
+                twoForOne: true,
+                reducedPrice: {
+                    isReduced: true,
+                    newPrice: 10.0,
+                    threshold: 3
+                }
+            }
+
+            // TODO:
+            // fix reducedPrice
+
+            var total;
+            var pricePerUnit = price
+            // grabbing the amount
+            const amount = document.getElementById("totalItem").value;
+
+            // Checking if the item has a discount and if it passes the threshold
+            const isReduced = discount.reducedPrice.isReduced;
+            const threshold = discount.reducedPrice.threshold;
+            if (isReduced && amount > threshold) {
+                pricePerUnit = discount.reducedPrice.newPrice;
+            }
+
+            // Checking if the item has a two for one discount, if it does and the costumer orderd two, only charge for one item
+            if (discount.twoForOne && amount == 2) {
+                total = pricePerUnit;
+            } else {
+                total = amount * pricePerUnit;
+            }
+
+            // Writing the necesery information
+            const text = '{{name}}, price: ${{price}}, total price: $' + total;
+            document.getElementById("total").innerHTML = text;
+        }
+    </script>
+
+</body>
+
+</html>
