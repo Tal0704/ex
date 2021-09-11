@@ -14,6 +14,9 @@
         document.getElementById("total").innerHTML = "{{name}}, price: ${{price}}, total price: $0"
 
         function updateTotal(price) {
+
+            // This is just to check that everything is working properly since i don't know how to pass multipls arguments 
+            // to a function from the HTML side to the Javascript side
             const discount = {
                 twoForOne: true,
                 reducedPrice: {
@@ -22,9 +25,6 @@
                     threshold: 3
                 }
             }
-
-            // TODO:
-            // fix reducedPrice
 
             var total;
             var pricePerUnit = price
